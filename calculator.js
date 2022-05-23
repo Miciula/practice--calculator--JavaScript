@@ -43,7 +43,11 @@ deleteEqual.forEach((deleteEqualFromButtonClick) => {
   deleteEqualFromButtonClick.addEventListener(
     'click',
     () => {
-      console.log(deleteEqualFromButtonClick.innerText)
+      result = ''
+      number1 = 0
+      number2 = 0
+      operator = undefined
+      render()
     }
   )
 })
