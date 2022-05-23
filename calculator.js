@@ -12,6 +12,19 @@ let number2 = 0
 let operator = undefined
 
 
+add  = () => {
+  return a + b
+}
+subtract = () => {
+  return a + b
+}
+divide = () => {
+  return a + b
+}
+multiply = () => {
+  return a + b
+}
+
 concat = (number) => {
   result = result.toString() + number.toString()
   render()
@@ -34,7 +47,13 @@ operators.forEach((operatorFromButtonClick) => {
   operatorFromButtonClick.addEventListener(
     'click',
     () => {
-      console.log(operatorFromButtonClick.innerText)
+      result = ''
+      number1 = 0
+      number2 = 0
+      operator = operatorFromButtonClick.innerText
+      console.log(operator)
+      render()
+
     }
   )
 })
@@ -56,6 +75,7 @@ deleteLast.forEach((deleteLastFromButtonClick) => {
   deleteLastFromButtonClick.addEventListener(
     'click',
     () => {
+      // CONSOLE LOG !!
       console.log(deleteLastFromButtonClick.innerText)
     }
   )
@@ -65,6 +85,7 @@ equal.forEach((equalFromButtonClick) => {
   equalFromButtonClick.addEventListener(
     'click',
     () => {
+      // CONSOLE LOG !!
       console.log(equalFromButtonClick.innerText)
     }
   )
@@ -74,6 +95,7 @@ dot.forEach((dotFromButtonClick) => {
   dotFromButtonClick.addEventListener(
     'click',
     () => {
+      // CONSOLE LOG !!
       console.log(dotFromButtonClick.innerText)
     }
   )
