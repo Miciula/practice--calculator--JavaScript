@@ -21,56 +21,56 @@ render = () => {
   mainResult.innerText = result
 }
 
-numbers.forEach((e) => {
-  e.addEventListener(
+numbers.forEach((numberFromButtonClick) => {
+  numberFromButtonClick.addEventListener(
     'click',
     () => {
-      concat(e.innerText)
+      concat(numberFromButtonClick.innerText)
     }
   )
 })
 
-operators.forEach((e) => {
-  e.addEventListener(
+operators.forEach((operatorFromButtonClick) => {
+  operatorFromButtonClick.addEventListener(
     'click',
     () => {
-      console.log(e.innerText)
+      console.log(operatorFromButtonClick.innerText)
     }
   )
 })
 
-deleteEqual.forEach((e) => {
-  e.addEventListener(
+deleteEqual.forEach((deleteEqualFromButtonClick) => {
+  deleteEqualFromButtonClick.addEventListener(
     'click',
     () => {
-      console.log(e.innerText)
+      console.log(deleteEqualFromButtonClick.innerText)
     }
   )
 })
 
-deleteLast.forEach((e) => {
-  e.addEventListener(
+deleteLast.forEach((deleteLastFromButtonClick) => {
+  deleteLastFromButtonClick.addEventListener(
     'click',
     () => {
-      console.log(e.innerText)
+      console.log(deleteLastFromButtonClick.innerText)
     }
   )
 })
 
-equal.forEach((e) => {
-  e.addEventListener(
+equal.forEach((equalFromButtonClick) => {
+  equalFromButtonClick.addEventListener(
     'click',
     () => {
-      console.log(e.innerText)
+      console.log(equalFromButtonClick.innerText)
     }
   )
 })
 
-dot.forEach((e) => {
-  e.addEventListener(
+dot.forEach((dotFromButtonClick) => {
+  dotFromButtonClick.addEventListener(
     'click',
     () => {
-      console.log(e.innerText)
+      console.log(dotFromButtonClick.innerText)
     }
   )
 })
