@@ -11,11 +11,21 @@ let number1 = 0
 let number2 = 0
 let operator = undefined
 
+
+concat = (number) => {
+  result = result.toString() + number.toString()
+  render()
+}
+
+render = () => {
+  mainResult.innerText = result
+}
+
 numbers.forEach((e) => {
   e.addEventListener(
     'click',
     () => {
-      console.log(e.innerText)
+      concat(e.innerText)
     }
   )
 })
