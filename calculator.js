@@ -135,8 +135,8 @@ deleteLast.forEach((deleteLastFromButtonClick) => {
   deleteLastFromButtonClick.addEventListener(
     'click',
     () => {
-      // CONSOLE LOG !!
-      console.log(deleteLastFromButtonClick.innerText)
+      result = String(result).slice(0, -1)
+      render()
     }
   )
 })
