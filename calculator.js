@@ -5,7 +5,6 @@ const equal = document.querySelectorAll('.equal')
 const deleteEqual = document.querySelectorAll('.deleteEqual')
 const dot = document.querySelectorAll('.dot')
 const deleteLast = document.querySelectorAll('.deleteLast')
-const SPR = document.querySelectorAll('.SPR')
 
 let result = ''
 let number1 = ''
@@ -179,18 +178,3 @@ dot.forEach((dotFromButtonClick) => {
     }
   )
 })
-
-SPR.forEach((SPR) => {
-  SPR.addEventListener(
-    'click',
-    () => {
-      console.log(
-        'result: ', result,
-        'number1: ', number1,
-        'number2: ', number2,
-        'operator: ', operator
-      )
-    }
-  )
-})
-
