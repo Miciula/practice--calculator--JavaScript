@@ -98,6 +98,11 @@ numbers.forEach((numberFromButtonClick) => {
   numberFromButtonClick.addEventListener(
     'click',
     () => {
+      if (numberFromButtonClick.innerText === String(0)) {
+        if (result === String(0)) {
+          return
+        }
+      }
       concat(numberFromButtonClick.innerText)
     }
   )
@@ -163,13 +168,14 @@ dot.forEach((dotFromButtonClick) => {
   dotFromButtonClick.addEventListener(
     'click',
     () => {
-      if( result.includes('.')){
+      if (result.includes('.')) {
         return
       }
-      if (result === ''){
+      if (result === '') {
         result = 0.
       }
-     concat(dotFromButtonClick.innerText)
+
+      concat(dotFromButtonClick.innerText)
     }
   )
 })
