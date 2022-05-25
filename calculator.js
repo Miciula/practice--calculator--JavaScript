@@ -38,8 +38,8 @@ divide = (a, b) => {
 multiply = (a, b) => {
   return a * b
 }
-concat = (number) => {
-  result = result.toString() + number.toString()
+concat = (e) => {
+  result = result.toString() + e.toString()
   render()
 }
 render = () => {
@@ -163,8 +163,13 @@ dot.forEach((dotFromButtonClick) => {
   dotFromButtonClick.addEventListener(
     'click',
     () => {
-      // CONSOLE LOG !!
-      console.log(dotFromButtonClick.innerText)
+      if( result.includes('.')){
+        return
+      }
+      if (result === ''){
+        result = 0.
+      }
+     concat(dotFromButtonClick.innerText)
     }
   )
 })
