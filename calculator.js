@@ -1,10 +1,10 @@
-const numbers = document.querySelectorAll('.number')
-const mainResult = document.querySelector('.result')
-const operators = document.querySelectorAll('.operator')
-const equal = document.querySelectorAll('.equal')
-const deleteEqual = document.querySelectorAll('.deleteEqual')
-const dot = document.querySelectorAll('.dot')
-const deleteLast = document.querySelectorAll('.deleteLast')
+const numbers = document.querySelectorAll('.calc__button--number')
+const mainResult = document.querySelector('.calc__result')
+const operators = document.querySelectorAll('.calc__button--operator ')
+const equal = document.querySelectorAll('.calc__button--equal')
+const deleteEqual = document.querySelectorAll('.calc__button--deleteEqual')
+const dot = document.querySelectorAll('.calc__button--dot')
+const deleteLast = document.querySelectorAll('.calc__button--deleteLast')
 
 let result = ''
 let number1 = ''
