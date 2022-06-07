@@ -11,7 +11,7 @@ let number1 = ''
 let number2 = ''
 let operator = undefined
 
-count = () => {
+const count = () => {
   switch (String(operator)) {
     case '+': result = add(Number(number1), Number(number2))
       break;
@@ -25,27 +25,27 @@ count = () => {
       return
   }
 }
-add = (a, b) => {
+const add = (a, b) => {
   return a + b
 }
-subtract = (a, b) => {
+const subtract = (a, b) => {
   return a - b
 }
-divide = (a, b) => {
+const divide = (a, b) => {
   return a / b
 }
-multiply = (a, b) => {
+const multiply = (a, b) => {
   return a * b
 }
-concat = (e) => {
+const concat = (e) => {
   result = result.toString() + e.toString()
   render()
 }
-render = () => {
+const render = () => {
   mainResult.innerText = result
 }
 
-check = () => {
+const check = () => {
   if (result !== '' && result !== '-' && number1 === '' && number2 === '') {
     number1 = result
     result = 0
@@ -65,7 +65,7 @@ check = () => {
   }
 }
 
-changeOperator = (e) => {
+const changeOperator = (e) => {
   if (number1 === '' && result === '' && operator === undefined) {
     result = '-'
     render()
