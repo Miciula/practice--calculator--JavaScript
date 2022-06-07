@@ -1,7 +1,7 @@
 .calc {
   height: 230 px;
   width: 202px;
-  background-color: rgb(49, 48, 48);
+  background-color: #313030;
   box-sizing: border-box;
   position: fixed;
   display: flex;
@@ -11,8 +11,8 @@
 }
 
 .calc__result {
-  background-color: rgb(235, 230, 224);
-  border: 1px solid black;
+  background-color: #ebe6e0;
+  border: 1px solid #000000;
   width: 200px;
   height: 50px;
   font-family: sans-serif;
@@ -26,7 +26,7 @@
   font-size: 25px;
   height: 50px;
   width: 50px;
-  border: 1px solid black;
+  border: 1px solid #000000;
   border-radius: 3px;
 }
 
