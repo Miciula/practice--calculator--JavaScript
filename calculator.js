@@ -97,8 +97,8 @@ numbers.forEach((numberFromButtonClick) => {
   numberFromButtonClick.addEventListener(
     'click',
     () => {
-      if (numberFromButtonClick.innerText === String(0)) {
-        if (result === String(0)) {
+      if (numberFromButtonClick.innerText === 0) {
+        if (result === 0) {
           return
         }
       }
