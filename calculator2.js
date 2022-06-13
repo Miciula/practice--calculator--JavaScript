@@ -1,5 +1,6 @@
 initCalculator = (() => {
 
+  //----------------> ELEMENTS FROM HTML <----------------
   const numbers = document.querySelectorAll('.calc__button--number')
   const mainResult = document.querySelector('.calc__result')
   const operators = document.querySelectorAll('.calc__button--operator ')
@@ -9,10 +10,15 @@ initCalculator = (() => {
   const deleteLast = document.querySelector('.calc__button--deleteLast')
   // const testingButton = document.querySelector('.test')
 
+
+  //----------------> beginning of STATE <----------------
   let result = 0
   let number = 0
   let operator = null
+  //----------------> end of STATE <----------------
 
+
+  //----------------> beginning of MATHEMATICAL FUNCTIONS <----------------
   const count = () => {
     switch (operator) {
       case '+': result = add(Number(number), Number(result))
@@ -27,32 +33,36 @@ initCalculator = (() => {
         return
     }
   }
-
   const add = (a, b) => {
     return a + b
   }
-
   const subtract = (a, b) => {
     return a - b
   }
-
   const divide = (a, b) => {
     return a / b
   }
-
   const multiply = (a, b) => {
     return a * b
   }
+  const changeOperator = (operatorFromButton) => {
+    operator = operatorFromButton
+  }
+  //----------------> end of MATHEMATICAL FUNCTIONS <----------------
 
+
+  //----------------> beginning of RENDERING FUNCTIONS <----------------
   const concat = (character) => {
     result = result.toString() + character.toString()
     render()
   }
-
   const render = () => {
     mainResult.innerText = result
   }
+  //----------------> end of RENDERING FUNCTIONS <----------------
 
+
+  //----------------> beginning of BUTTONS OPERATIONS <----------------
   numbers.forEach((numberFromButton) => {
     numberFromButton.addEventListener(
       'click',
@@ -76,7 +86,6 @@ initCalculator = (() => {
       }
     )
   })
-
   operators.forEach((operatorFromButton) => {
     operatorFromButton.addEventListener(
       'click',
@@ -121,11 +130,6 @@ initCalculator = (() => {
       }
     )
   })
-
-  const changeOperator = (operatorFromButton) => {
-    operator = operatorFromButton
-  }
-
   deleteEqual.addEventListener(
     'click',
     () => {
@@ -135,7 +139,6 @@ initCalculator = (() => {
       render()
     }
   )
-
   deleteLast.addEventListener(
     'click',
     () => {
@@ -152,7 +155,6 @@ initCalculator = (() => {
       render()
     }
   )
-
   equal.addEventListener(
     'click',
     () => {
@@ -162,7 +164,6 @@ initCalculator = (() => {
       operator = '='
     }
   )
-
   dot.addEventListener(
     'click',
     () => {
@@ -180,8 +181,10 @@ initCalculator = (() => {
       concat('.')
     }
   )
+  //----------------> end of BUTTONS OPERATIONS <----------------
 
 
+  //----------------> beginning of SUPPORT ELEMENTS <----------------
   // // testing button
   // testingButton.addEventListener(
   //   'click',
@@ -193,4 +196,5 @@ initCalculator = (() => {
   //     )
   //   }
   // )
+  //----------------> end of SUPPORT ELEMENTS <----------------
 })()
