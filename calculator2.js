@@ -3,11 +3,11 @@ initCalculator = (() => {
   const numbers = document.querySelectorAll('.calc__button--number')
   const mainResult = document.querySelector('.calc__result')
   const operators = document.querySelectorAll('.calc__button--operator ')
-  const equal = document.querySelectorAll('.calc__button--equal')
-  const deleteEqual = document.querySelectorAll('.calc__button--deleteEqual')
-  const dot = document.querySelectorAll('.calc__button--dot')
-  const deleteLast = document.querySelectorAll('.calc__button--deleteLast')
-  // const testingButton = document.querySelectorAll('.test')
+  const equal = document.querySelector('.calc__button--equal')
+  const deleteEqual = document.querySelector('.calc__button--deleteEqual')
+  const dot = document.querySelector('.calc__button--dot')
+  const deleteLast = document.querySelector('.calc__button--deleteLast')
+  // const testingButton = document.querySelector('.test')
 
   let result = 0
   let number = 0
@@ -126,75 +126,71 @@ initCalculator = (() => {
     operator = operatorFromButton
   }
 
-  deleteEqual.forEach((deleteEqualFromButtonClick) => {
-    deleteEqualFromButtonClick.addEventListener(
-      'click',
-      () => {
+  deleteEqual.addEventListener(
+    'click',
+    () => {
+      result = 0
+      number = 0
+      operator = null
+      render()
+    }
+  )
+
+  deleteLast.addEventListener(
+    'click',
+    () => {
+      if (result === '' || result === 1 || result === 2 || result === 3 || result === 4 || result === 5 || result === 6 || result === 7 || result === 8 || result === 9 || result === 0) {
         result = 0
-        number = 0
-        operator = null
         render()
+        return
       }
-    )
-  })
+      if (result === 0) {
+        return
+      }
+      result = String(result).slice(0, -1)
+      result = Number(result)
+      render()
+    }
+  )
 
-  deleteLast.forEach((deleteLastFromButtonClick) => {
-    deleteLastFromButtonClick.addEventListener(
-      'click',
-      () => {
-        if (result === 0) {
-          return
-        }
-        result = String(result).slice(0, -1)
-        render()
-      }
-    )
-  })
+  equal.addEventListener(
+    'click',
+    () => {
+      count()
+      render()
+      number = 0
+      operator = '='
+    }
+  )
 
-  equal.forEach((equalFromButtonClick) => {
-    equalFromButtonClick.addEventListener(
-      'click',
-      () => {
-        count()
-        render()
-        number = 0
-        operator = '='
+  dot.addEventListener(
+    'click',
+    () => {
+      if (result === 0) {
+        result = 0
+        concat('.')
+        return
       }
-    )
-  })
+      if (result === '-') {
+        return
+      }
+      if (result.includes('.')) {
+        return
+      }
+      concat('.')
+    }
+  )
 
-  dot.forEach((dotFromButtonClick) => {
-    dotFromButtonClick.addEventListener(
-      'click',
-      () => {
-        if (result === 0) {
-          result = 0
-          concat(dotFromButtonClick.innerText)
-          return
-        }
-        if (result === '-') {
-          return
-        }
-        if (result.includes('.')) {
-          return
-        }
-        concat(dotFromButtonClick.innerText)
-      }
-    )
-  })
 
   // // testing button
-  // testingButton.forEach((testingButton) => {
-  //   testingButton.addEventListener(
-  //     'click',
-  //     () => {
-  //       console.log(
-  //         'result:', result,
-  //         'number:', number,
-  //         'operator:', operator,
-  //       )
-  //     }
-  //   )
-  // })
-
+  // testingButton.addEventListener(
+  //   'click',
+  //   () => {
+  //     console.log(
+  //       'result:', result,
+  //       'number:', number,
+  //       'operator:', operator,
+  //     )
+  //   }
+  // )
 })()
