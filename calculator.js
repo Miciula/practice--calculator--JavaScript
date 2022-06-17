@@ -1,180 +1,200 @@
-const numbers = document.querySelectorAll('.calc__button--number')
-const mainResult = document.querySelector('.calc__result')
-const operators = document.querySelectorAll('.calc__button--operator ')
-const equal = document.querySelectorAll('.calc__button--equal')
-const deleteEqual = document.querySelectorAll('.calc__button--deleteEqual')
-const dot = document.querySelectorAll('.calc__button--dot')
-const deleteLast = document.querySelectorAll('.calc__button--deleteLast')
+initCalculator = (() => {
 
-let result = ''
-let number1 = ''
-let number2 = ''
-let operator = undefined
+  //----------------> ELEMENTS FROM HTML <----------------
+  const numbers = document.querySelectorAll('.calc__button--number')
+  const mainResult = document.querySelector('.calc__result')
+  const operators = document.querySelectorAll('.calc__button--operator ')
+  const equal = document.querySelector('.calc__button--equal')
+  const deleteEqual = document.querySelector('.calc__button--deleteEqual')
+  const dot = document.querySelector('.calc__button--dot')
+  const deleteLast = document.querySelector('.calc__button--deleteLast')
+  // const testingButton = document.querySelector('.test')
 
-const count = () => {
-  switch (String(operator)) {
-    case '+': result = add(Number(number1), Number(number2))
-      break;
-    case '-': result = subtract(Number(number1), Number(number2))
-      break;
-    case '/': result = divide(Number(number1), Number(number2))
-      break;
-    case '*': result = multiply(Number(number1), Number(number2))
-      break;
-    default:
-      return
-  }
-}
-const add = (a, b) => {
-  return a + b
-}
-const subtract = (a, b) => {
-  return a - b
-}
-const divide = (a, b) => {
-  return a / b
-}
-const multiply = (a, b) => {
-  return a * b
-}
-const concat = (e) => {
-  result = result.toString() + e.toString()
-  render()
-}
-const render = () => {
-  mainResult.innerText = result
-}
 
-const check = () => {
-  if (result !== '' && result !== '-' && number1 === '' && number2 === '') {
-    number1 = result
-    result = 0
-    render()
-    result = ''
-    return
-  }
-  if (result !== '' && number1 !== '' && number2 === '') {
-    number2 = result
-    count()
-    render()
-    number1 = result
-    number2 = ''
-    result = ''
-    operator = undefined
-    return
-  }
-}
+  //----------------> beginning of STATE <----------------
+  let result = 0
+  let number = 0
+  let operator = null
+  //----------------> end of STATE <----------------
 
-const changeOperator = (e) => {
-  if (number1 === '' && result === '' && operator === undefined) {
-    result = '-'
-    render()
-    return
-  }
-  if (number1 !== '' && result === '' && operator === undefined) {
-    operator = e
-    result = 0
-    render()
-    result = ''
-    return
-  }
-  if (number1 !== '' && result === '' && operator === '-') {
-    operator = e
-    result = '-'
-    render()
-    return
-  }
-  if (number1 !== '' && result === '' && operator !== undefined && operator !== '-') {
-    result = '-'
-    render()
-    return
-  }
-  operator = e
-  check()
-}
 
-numbers.forEach((numberFromButtonClick) => {
-  numberFromButtonClick.addEventListener(
-    'click',
-    () => {
-      if (numberFromButtonClick.innerText === 0) {
-        if (result === 0) {
+  //----------------> beginning of MATHEMATICAL FUNCTIONS <----------------
+  const count = () => {
+    switch (operator) {
+      case '+': result = add(Number(number), Number(result))
+        break;
+      case '-': result = subtract(Number(number), Number(result))
+        break;
+      case '/': result = divide(Number(number), Number(result))
+        break;
+      case '*': result = multiply(Number(number), Number(result))
+        break;
+      default:
+        return
+    }
+  }
+  const add = (a, b) => {
+    return a + b
+  }
+  const subtract = (a, b) => {
+    return a - b
+  }
+  const divide = (a, b) => {
+    return a / b
+  }
+  const multiply = (a, b) => {
+    return a * b
+  }
+  const changeOperator = (operatorFromButton) => {
+    operator = operatorFromButton
+  }
+  //----------------> end of MATHEMATICAL FUNCTIONS <----------------
+
+
+  //----------------> beginning of RENDERING FUNCTIONS <----------------
+  const concat = (character) => {
+    result = result.toString() + character.toString()
+    render()
+  }
+  const render = () => {
+    mainResult.innerText = result
+  }
+  //----------------> end of RENDERING FUNCTIONS <----------------
+
+
+  //----------------> beginning of BUTTONS OPERATIONS <----------------
+  numbers.forEach((numberFromButton) => {
+    numberFromButton.addEventListener(
+      'click',
+      () => {
+        if (operator === '=') {
+          result = 0
+          number = 0
+          operator = null
+        }
+        if (numberFromButton.innerText === '0' && result === 0) {
+          result = 0
+          render()
           return
         }
+        if (numberFromButton.innerText !== '0' && result === 0) {
+          result = numberFromButton.innerText
+          render()
+          return
+        }
+        concat(numberFromButton.innerText)
       }
-      concat(numberFromButtonClick.innerText)
-    }
-  )
-})
+    )
+  })
+  operators.forEach((operatorFromButton) => {
+    operatorFromButton.addEventListener(
+      'click',
+      () => {
+        if (result === 0 && number !== 0 && (operator !== null)) {
+          if (operatorFromButton.innerText === '-') {
+            result = '-'
+            render()
+            return
+          }
+          return
+        }
 
-operators.forEach((e) => {
-  e.addEventListener(
-    'click',
-    () => {
-      changeOperator(e.innerText)
-    }
-  )
-})
+        if (operatorFromButton.innerText === '-' && result === 0 && number === 0 && operator === null) {
+          result = '-'
+          render()
+          return
+        }
+        if (result === 0 && number === 0 && (operator === null || operator === '=')) {
+          return
+        }
 
-deleteEqual.forEach((deleteEqualFromButtonClick) => {
-  deleteEqualFromButtonClick.addEventListener(
+        if (operatorFromButton.innerText === '-' && result === '-') {
+          result = '-'
+          return
+        }
+        if (operatorFromButton.innerText === '-' && operator === '-' && result === 0) {
+          result = operatorFromButton.innerText
+          render()
+          return
+        }
+        if (result === '-') {
+          result = '-'
+          return
+        }
+        count()
+        render()
+        number = result
+        result = 0
+        operator = null
+        changeOperator(operatorFromButton.innerText)
+      }
+    )
+  })
+  deleteEqual.addEventListener(
     'click',
     () => {
       result = 0
-      number1 = ''
-      number2 = ''
-      operator = undefined
+      number = 0
+      operator = null
       render()
-      result = ''
     }
   )
-})
-
-deleteLast.forEach((deleteLastFromButtonClick) => {
-  deleteLastFromButtonClick.addEventListener(
+  deleteLast.addEventListener(
     'click',
     () => {
+      if (result === '' || result === 1 || result === 2 || result === 3 || result === 4 || result === 5 || result === 6 || result === 7 || result === 8 || result === 9 || result === 0) {
+        result = 0
+        render()
+        return
+      }
+      if (result === 0) {
+        return
+      }
       result = String(result).slice(0, -1)
+      result = Number(result)
       render()
     }
   )
-})
-
-equal.forEach((equalFromButtonClick) => {
-  equalFromButtonClick.addEventListener(
+  equal.addEventListener(
     'click',
     () => {
-
-      if (result === '' && number1 !== '' && number2 === '') {
-        result = number1
-        operator = undefined
-        render()
-        result = ''
-        return
-      }
-      if (result !== '' && number1 === '' && number2 === '') {
-        render()
-        number1 = result
-        result = ''
-        return
-      }
-      check()
+      count()
+      render()
+      number = 0
+      operator = '='
     }
   )
-})
-
-dot.forEach((dotFromButtonClick) => {
-  dotFromButtonClick.addEventListener(
+  dot.addEventListener(
     'click',
     () => {
+      if (result === 0) {
+        result = 0
+        concat('.')
+        return
+      }
+      if (result === '-') {
+        return
+      }
       if (result.includes('.')) {
         return
       }
-      if (result === '') {
-        result = 0.
-      }
-
-      concat(dotFromButtonClick.innerText)
+      concat('.')
     }
   )
-})
+  //----------------> end of BUTTONS OPERATIONS <----------------
+
+
+  //----------------> beginning of SUPPORT ELEMENTS <----------------
+  // // testing button
+  // testingButton.addEventListener(
+  //   'click',
+  //   () => {
+  //     console.log(
+  //       'result:', result,
+  //       'number:', number,
+  //       'operator:', operator,
+  //     )
+  //   }
+  // )
+  //----------------> end of SUPPORT ELEMENTS <----------------
+})()
