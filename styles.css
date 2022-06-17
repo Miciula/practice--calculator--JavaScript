@@ -1,0 +1,47 @@
+.calc {
+  height: 230 px;
+  width: 202px;
+  background-color: #313030;
+  box-sizing: border-box;
+  position: fixed;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.calc__result {
+  background-color: #ebe6e0;
+  border: 1px solid #000000;
+  width: 200px;
+  height: 50px;
+  font-family: sans-serif;
+  font-size: 30px;
+  align-items: center;
+  border-radius: 3px;
+}
+
+.calc__button {
+  font-family: sans-serif;
+  font-size: 25px;
+  height: 50px;
+  width: 50px;
+  border: 1px solid #000000;
+  border-radius: 3px;
+}
+
+.calc__button--number {}
+
+.calc__button--operator {}
+
+.calc__button--dot {}
+
+.calc__button--equal {}
+
+.calc__button--deleteEqual {}
+
+.calc__button--deleteLast {}
+
+.bigger_width {
+  width: 100px;
+}
